@@ -1,0 +1,114 @@
+CT
+
+clear all ; close all ; clc
+
+% Read DICOM image
+I = dicomread( "C:\Users\User\Downloads\CT.dcm" ) ;
+I = im2double(I);
+D = 400;
+Dsensor1 = 0.25;
+% Create a fan-beam transformation
+[F1,xp,theta] = fanbeam(I,D,'FanSensorSpacing',Dsensor1);
+subplot(1,3,1); imshow(F1,[],'XData',theta,'YData',xp,...
+		 'InitialMagnification','fit')
+title('Dsensor=0.25')
+axis('on')
+axis normal
+xlabel('Fan Rotation Angle (degrees)')
+ylabel('Fan Sensor Position (degrees)')
+Dsensor2 = 3;
+[F2,xp,theta] = fanbeam(I,D,'FanSensorSpacing',Dsensor2);
+subplot(1,3,2); imshow(F2,[],'XData',theta,'YData',xp,...
+		 'InitialMagnification','fit')
+title('Dsensor=3')
+axis('on')
+axis normal
+xlabel('Fan Rotation Angle (degrees)')
+ylabel('Fan Sensor Position (degrees)')
+Dsensor3 = 5;
+[F3,xp,theta] = fanbeam(I,D,'FanSensorSpacing',Dsensor3);
+subplot(1,3,3); imshow(F3,[],'XData',theta,'YData',xp,...
+		 'InitialMagnification','fit')
+xlabel('Fan Rotation Angle (degrees)')
+ylabel('Fan Sensor Position (degrees)')
+title('Dsensor=5')
+axis('on')
+axis normal
+colormap(hot);colorbar
+
+phantom
+
+clear all ; close all ; clc
+
+% Create a sample image and display it
+I = phantom( "Modified Shepp-Logan", 200 ) ;
+D = 400;
+Dsensor1 = 0.25;
+% Create a fan-beam transformation
+[F1,xp,theta] = fanbeam(I,D,'FanSensorSpacing',Dsensor1);
+subplot(1,3,1); imshow(F1,[],'XData',theta,'YData',xp,...
+		 'InitialMagnification','fit')
+title('Dsensor=0.25')
+axis('on')
+axis normal
+xlabel('Fan Rotation Angle (degrees)')
+ylabel('Fan Sensor Position (degrees)')
+Dsensor2 = 3;
+[F2,xp,theta] = fanbeam(I,D,'FanSensorSpacing',Dsensor2);
+subplot(1,3,2); imshow(F2,[],'XData',theta,'YData',xp,...
+		 'InitialMagnification','fit')
+title('Dsensor=3')
+axis('on')
+axis normal
+xlabel('Fan Rotation Angle (degrees)')
+ylabel('Fan Sensor Position (degrees)')
+Dsensor3 = 5;
+[F3,xp,theta] = fanbeam(I,D,'FanSensorSpacing',Dsensor3);
+subplot(1,3,3); imshow(F3,[],'XData',theta,'YData',xp,...
+		 'InitialMagnification','fit')
+xlabel('Fan Rotation Angle (degrees)')
+ylabel('Fan Sensor Position (degrees)')
+title('Dsensor=5')
+axis('on')
+axis normal
+colormap(hot);colorbar
+
+simple
+
+clear all ; close all ; clc
+
+% Create a black 30x30 image
+I = zeros( 30, 30 ) ;
+% With a white rectangle in it
+I( 5:24, 13:17 ) = 1 ;
+D = 400;
+Dsensor1 = 0.25;
+% Create a fan-beam transformation
+[F1,xp,theta] = fanbeam(I,D,'FanSensorSpacing',Dsensor1);
+subplot(1,3,1); imshow(F1,[],'XData',theta,'YData',xp,...
+		 'InitialMagnification','fit')
+title('Dsensor=0.25')
+axis('on')
+axis normal
+xlabel('Fan Rotation Angle (degrees)')
+ylabel('Fan Sensor Position (degrees)')
+Dsensor2 = 3;
+[F2,xp,theta] = fanbeam(I,D,'FanSensorSpacing',Dsensor2);
+subplot(1,3,2); imshow(F2,[],'XData',theta,'YData',xp,...
+		 'InitialMagnification','fit')
+title('Dsensor=3')
+axis('on')
+axis normal
+colormap(hot);colorbar
+xlabel('Fan Rotation Angle (degrees)')
+ylabel('Fan Sensor Position (degrees)')
+Dsensor3 = 5;
+[F3,xp,theta] = fanbeam(I,D,'FanSensorSpacing',Dsensor3);
+subplot(1,3,3); imshow(F3,[],'XData',theta,'YData',xp,...
+		 'InitialMagnification','fit')
+xlabel('Fan Rotation Angle (degrees)')
+ylabel('Fan Sensor Position (degrees)')
+title('Dsensor=5')
+axis('on')
+axis normal
+colormap(hot);colorbar

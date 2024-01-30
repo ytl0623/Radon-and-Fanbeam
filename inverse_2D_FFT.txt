@@ -1,0 +1,73 @@
+CT
+
+clear all ; close all ; clc ;
+
+% Read DICOM image
+P = dicomread( "C:\Users\User\Downloads\CT.dcm" ) ;
+% Get 2D Fourier transform
+F = fft2( P ) ;
+F1 = fftshift( F ) ;
+F2 = abs( F1 ) ;
+F3 = log( F2 + 1 ) ;
+% Get 2D Inverse transform
+I = ifft2(F) ;
+figure
+subplot(1,3, 1)
+imshow(P,[])
+title('Original image')
+subplot(1,3, 2)
+imshow(F3,[])
+title('2D Fourier transform')
+subplot(1,3, 3)
+imshow(I,[])
+title('2D Inverse transform')
+
+phantom
+
+clear all ; close all ; clc ;
+
+% Create head phantom image
+P = phantom( "Modified Shepp-Logan", 200 ) ;
+% Get 2D Fourier transform
+F = fft2( P ) ;
+F1 = fftshift( F ) ;
+F2 = abs( F1 ) ;
+F3 = log( F2 + 1 ) ;
+% Get 2D Inverse transform
+I = ifft2(F) ;
+figure
+subplot(1,3, 1)
+imshow(P,[])
+title('Original image')
+subplot(1,3, 2)
+imshow(F3,[])
+title('2D Fourier transform')
+subplot(1,3, 3)
+imshow(I,[])
+title('2D Inverse transform')
+
+simple
+
+clear all ; close all ; clc ;
+
+% Create a black 30x30 image
+P = zeros( 30, 30 ) ;
+% With a white rectangle in it
+P( 5:24, 13:17 ) = 1 ;
+% Get 2D Fourier transform
+F = fft2( P ) ;
+F1 = fftshift( F ) ;
+F2 = abs( F1 ) ;
+F3 = log( F2 + 1 ) ;
+% Get 2D Inverse transform
+I = ifft2(F) ;
+figure
+subplot(1,3, 1)
+imshow(P,[])
+title('Original image')
+subplot(1,3, 2)
+imshow(F3,[])
+title('2D Fourier transform')
+subplot(1,3, 3)
+imshow(I,[])
+title('2D Inverse transform')

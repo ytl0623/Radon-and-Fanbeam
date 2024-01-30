@@ -1,0 +1,64 @@
+CT
+
+clear all ; close all ; clc ;
+
+% Read DICOM image
+P = dicomread( "C:\Users\User\Downloads\CT.dcm" ) ;
+subplot( 2,2, 1 ) ; imshow( P, [] ) ; title( "Original image" )
+% Get Fourier transform
+F = fft2( P ) ;
+subplot( 2,2, 2 ) ; imshow( F, [] ) ; title( "Fourier transformed image" )
+% Get the centered spectrum
+F = fftshift( F ) ;
+subplot( 2,2, 3 ) ; imshow( F, [] ) ; title( "Centered Fourier transformed image" )
+% Get the magnitude
+F = abs( F ) ;
+% Apply log transform
+F = log( F + 1 ) ;
+% Use mat2gray to scale the image between 0 and 1
+F = mat2gray( F ) ;
+subplot( 2,2, 4 ) ; imshow( F, [] ) ; title( "Scaled image" )
+
+phantom
+
+clear all ; close all ; clc ;
+
+% Create head phantom image
+P = phantom( "Modified Shepp-Logan", 200 ) ;
+subplot( 2,2, 1 ) ; imshow( P, [] ) ; title( "Original image" )
+% Get Fourier transform
+F = fft2( P ) ;
+subplot( 2,2, 2 ) ; imshow( F, [] ) ; title( "Fourier transformed image" )
+% Get the centered spectrum
+F = fftshift( F ) ;
+subplot( 2,2, 3 ) ; imshow( F, [] ) ; title( "Centered Fourier transformed image" )
+% Get the magnitude
+F = abs( F ) ;
+% Apply log transform
+F = log( F + 1 ) ;
+% Use mat2gray to scale the image between 0 and 1
+F = mat2gray( F ) ;
+subplot( 2,2, 4 ) ; imshow( F, [] ) ; title( "Scaled image" )
+
+simple
+
+clear all ; close all ; clc ;
+
+% Create a black 30x30 image
+P = zeros( 30, 30 ) ;
+% With a white rectangle in it
+P( 5:24, 13:17 ) = 1 ;
+subplot( 2,2, 1 ) ; imshow( P, [] ) ; title( "Original image" )
+% Get Fourier transform
+F = fft2( P ) ;
+subplot( 2,2, 2 ) ; imshow( F, [] ) ; title( "Fourier transformed image" )
+% Get the centered spectrum
+F = fftshift( F ) ;
+subplot( 2,2, 3 ) ; imshow( F, [] ) ; title( "Centered Fourier transformed image" )
+% Get the magnitude
+F = abs( F ) ;
+% Apply log transform
+F = log( F + 1 ) ;
+% Use mat2gray to scale the image between 0 and 1
+F = mat2gray( F ) ;
+subplot( 2,2, 4 ) ; imshow( F, [] ) ; title( "Scaled image" )

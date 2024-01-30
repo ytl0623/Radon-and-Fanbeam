@@ -1,0 +1,69 @@
+CT
+
+clear all ; close all ; clc
+
+% Read DICOM image
+P = dicomread( "C:\Users\User\Downloads\CT.dcm" ) ;
+% Create a fan-beam transformation
+d = 400;
+F = fanbeam(P,d);
+% Reconstitute the image from the fan-beam representation
+I = ifanbeam(F,d);
+figure
+subplot(1,3,1)
+imshow(P,[])
+title("Original image")
+subplot(1,3,2)
+imshow(F,[])
+title("Fan-beam transformation")
+subplot(1,3,3)
+imshow(I,[])
+title("Reconstituted image")
+
+phantom
+
+clear all ; close all ; clc
+
+% Create a sample image and display it
+P = phantom( "Modified Shepp-Logan", 200 ) ;
+% Create a fan-beam transformation
+d = 400;
+F = fanbeam(P,d);
+% Reconstitute the image from the fan-beam representation
+I = ifanbeam(F,d);
+figure
+subplot(1,3,1)
+imshow(P,[])
+title("Original image")
+subplot(1,3,2)
+imshow(F,[])
+title("Fan-beam transformation")
+subplot(1,3,3)
+imshow(I,[])
+title("Reconstituted image")
+
+simple
+
+clear all ; close all ; clc
+
+% Create a black 30x30 image
+P = zeros( 30, 30 ) ;
+% With a white rectangle in it
+P( 5:24, 13:17 ) = 1 ;
+% Create a fan-beam transformation
+d = 400;
+[F, Fpos, Fangles] = fanbeam(P,d);
+% Reconstitute the image from the fan-beam representation
+I = ifanbeam(F,d);
+figure
+subplot(1,3,1)
+imshow(P,[])
+title("Original image")
+subplot(1,3,2)
+imshow( F, [], "XData", Fangles, "YData", Fpos, ...
+        "InitialMagnification", "fit" )
+axis normal
+title("Fan-beam transformation")
+subplot(1,3,3)
+imshow(I,[])
+title("Reconstituted image")

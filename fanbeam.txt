@@ -1,0 +1,49 @@
+CT
+
+clear all ; close all ; clc
+
+% Read DICOM image
+P = dicomread( "C:\Users\User\Downloads\CT.dcm" ) ;
+% Calculate the fanbeam projections and display them
+[F, Fpos, Fangles] = fanbeam( P, 400 ) ;
+figure
+imshow( F, [], "XData", Fangles, "YData", Fpos, ...
+        "InitialMagnification", "fit" )
+axis normal
+xlabel( "Rotation Angles (degrees)" )
+ylabel( "Sensor Positions (degrees)" )
+colormap(hot); colorbar
+
+phantom
+
+clear all ; close all ; clc
+
+% Create a sample image and display it
+P = phantom( "Modified Shepp-Logan", 200 ) ;
+% Calculate the fanbeam projections and display them
+[F, Fpos, Fangles] = fanbeam( P, 400 ) ;
+figure
+imshow( F, [], "XData", Fangles, "YData", Fpos, ...
+        "InitialMagnification", "fit" )
+axis normal
+xlabel( "Rotation Angles (degrees)" )
+ylabel( "Sensor Positions (degrees)" )
+colormap(hot); colorbar
+
+simple
+
+clear all ; close all ; clc
+
+% Create a black 30x30 image
+P = zeros( 30, 30 ) ;
+% With a white rectangle in it
+P( 5:24, 13:17 ) = 1 ;
+% Calculate the fanbeam projections and display them
+[F, Fpos, Fangles] = fanbeam( P, 400 ) ;
+figure
+imshow( F, [], "XData", Fangles, "YData", Fpos, ...
+        "InitialMagnification", "fit" )
+axis normal
+xlabel( "Rotation Angles (degrees)" )
+ylabel( "Sensor Positions (degrees)" )
+colormap(hot); colorbar

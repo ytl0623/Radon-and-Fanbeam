@@ -1,0 +1,49 @@
+CT
+
+clear all ; close all ; clc
+
+% Read DICOM image
+I = dicomread( "C:\Users\User\Downloads\CT.dcm" ) ;
+% Calculate the Radon transform
+theta = 0:180 ;
+[R,xp] = radon( I, theta ) ;
+% Display the transform
+imshow( R, [], "Xdata", theta, "Ydata", xp, "InitialMagnification", "fit" )
+xlabel( "\theta (degrees)" )
+ylabel( "x'" )
+axis normal
+colormap(hot); colorbar
+
+phantom
+
+clear all ; close all ; clc
+
+% Create a sample image
+I = phantom( "Modified Shepp-Logan", 200 ) ;
+% Calculate the Radon transform
+theta = 0:180 ;
+[R,xp] = radon( I, theta ) ;
+% Display the transform
+imshow( R, [], "Xdata", theta, "Ydata", xp, "InitialMagnification", "fit" )
+xlabel( "\theta (degrees)" )
+ylabel( "x'" )
+axis normal
+colormap(hot); colorbar
+
+simple
+
+clear all ; close all ; clc
+
+% Create a black 30x30 image
+I = zeros( 30, 30 ) ;
+% With a white rectangle in it
+I( 5:24, 13:17 ) = 1 ;
+% Calculate the Radon transform
+theta = 0:180 ;
+[R,xp] = radon( I, theta ) ;
+% Display the transform
+imshow( R, [], "Xdata", theta, "Ydata", xp, "InitialMagnification", "fit" )
+xlabel( "\theta (degrees)" )
+ylabel( "x'" )
+axis normal
+colormap(hot); colorbar
