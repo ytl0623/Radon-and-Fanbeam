@@ -1,2 +1,2 @@
-# Radon-and-fanbeam
-Exercise Radon transform and fanbeam transform
+# Radon-and-Fanbeam
+Exercise Radon transform and Fanbeam transform
